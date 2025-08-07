@@ -52,8 +52,9 @@ class AlienInvasion:
             self.ship.moving_left = False
     
     def _fire_bullet(self):
-        new_bullet = Bullet(self)
-        self.bullets.add(new_bullet)
+        if len(self.bullets) < self.settings.bullet_limit:
+            new_bullet = Bullet(self)
+            self.bullets.add(new_bullet)
 
     def update_screen(self):
         self.screen.fill(self.settings.bg_color)
