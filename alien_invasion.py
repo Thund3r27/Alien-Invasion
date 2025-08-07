@@ -20,6 +20,10 @@ class AlienInvasion:
             self._check_events()
             self.ship.update()
             self.bullets.update()
+            for bullet in self.bullets.copy():
+                if bullet.rect.bottom <= 0:
+                    self.bullets.remove(bullet)
+            print(len(self.bullets))
             self.update_screen()
 
     def _check_events(self):
