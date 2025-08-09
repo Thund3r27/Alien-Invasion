@@ -68,11 +68,15 @@ class AlienInvasion:
         number_aliens_x = available_space_x // (2 * alien_width)
         #Creating first row of aliens
         for alien_number in range(number_aliens_x):
-            #Creating an alien and placing him in a row
-            alien = Alien(self)
-            alien.x = alien_width + 2 * alien_width * alien_number
-            alien.rect.x = alien.x
-            self.aliens.add(alien)
+            self._create_alien(alien_number)
+
+    def _create_alien(self, alien_number):
+        #Creating an alien and placing him in a row
+        alien = Alien(self)
+        alien_width = alien.rect.width
+        alien.x = alien_width + 2 * alien_width * alien_number
+        alien.rect.x = alien.x
+        self.aliens.add(alien)
 
     def update_screen(self):
         self.screen.fill(self.settings.bg_color)
