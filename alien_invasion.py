@@ -94,6 +94,15 @@ class AlienInvasion:
         #detecting collisions between ship and alien
         if pygame.sprite.spritecollideany(self.ship, self.aliens):
             self._ship_hit()
+        #checking for aliens reaching bottom of the screen
+        self._check_aliens_bottom()
+
+    def _check_aliens_bottom(self):
+        screen_rect = self.screen.get_rect()
+        for alien in self.aliens.sprites():
+            if alien.rect.bottom >= screen_rect.bottom:
+                self._ship_hit()
+                break
 
     def _create_fleet(self):
         alien = Alien(self)
