@@ -11,6 +11,6 @@ class Settings:
         self.bullet_color = (60, 60, 60)
         self.bullet_limit = 3
         self.alien_speed = 1.0
-        self.fleet_drop_speed = 10
+        self.fleet_drop_speed = 100
         #self.fleet_direction value means right when 1 and left when -1
         self.fleet_direction = 1
