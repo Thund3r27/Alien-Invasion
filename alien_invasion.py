@@ -77,15 +77,18 @@ class AlienInvasion:
             self._create_fleet()
 
     def _ship_hit(self):
-        self.stats.ships_left -= 1
-        #deleting all from lists aliens and bullets
-        self.aliens.empty()
-        self.bullets.empty()
-        #creating new fleet and putting new ship in the middle
-        self._create_fleet()
-        self.ship.center_ship()
-        #pause
-        sleep(1)
+        if self.stats.ships_left > 0:
+            self.stats.ships_left -= 1
+            #deleting all from lists aliens and bullets
+            self.aliens.empty()
+            self.bullets.empty()
+            #creating new fleet and putting new ship in the middle
+            self._create_fleet()
+            self.ship.center_ship()
+            #pause
+            sleep(1)
+        else:
+            self.stats.game_active = False
 
     def _update_aliens(self):
         #Checking if on edge and updating position of all aliens
