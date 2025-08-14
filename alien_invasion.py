@@ -36,28 +36,31 @@ class AlienInvasion:
 
     def _check_events(self):
         for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    sys.exit()
-                elif event.type == pygame.KEYDOWN:
-                    self._check_keydown_events(event)
-                elif event.type == pygame.KEYUP:
-                    self._check_keyup_events(event)
-                elif event.type == pygame.MOUSEBUTTONDOWN:
-                    mouse_pos = pygame.mouse.get_pos()
-                    self._check_play_button(mouse_pos)
+            if event.type == pygame.QUIT:
+                sys.exit()
+            elif event.type == pygame.KEYDOWN:
+                self._check_keydown_events(event)
+            elif event.type == pygame.KEYUP:
+                self._check_keyup_events(event)
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                mouse_pos = pygame.mouse.get_pos()
+                self._check_play_button(mouse_pos)
 
     def _check_play_button(self, mouse_pos):
         button_clicked = self.play_button.rect.collidepoint(mouse_pos)
         if button_clicked and not self.stats.game_active:
-            #resetting stats, deleting bullets and aliens then creating new
-            self.stats.reset_stats()
-            self.stats.game_active = True
-            self.aliens.empty()
-            self.bullets.empty()
-            self._create_fleet()
-            self.ship.center_ship()
-            #hiding the cursor
-            pygame.mouse.set_visible(False)
+            self._start_game()
+
+    def _start_game(self):
+        #resetting stats, deleting bullets and aliens then creating new
+        self.stats.reset_stats()
+        self.stats.game_active = True
+        self.aliens.empty()
+        self.bullets.empty()
+        self._create_fleet()
+        self.ship.center_ship()
+        #hiding the cursor
+        pygame.mouse.set_visible(False)
 
     def _check_keydown_events(self, event):
         if event.key == pygame.K_RIGHT:
@@ -66,6 +69,8 @@ class AlienInvasion:
             self.ship.moving_left = True
         elif event.key == pygame.K_SPACE:
             self._fire_bullet()
+        elif event.key == pygame.K_n:
+            self._start_game()
         elif event.key == pygame.K_q:
             sys.exit()
 
