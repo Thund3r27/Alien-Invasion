@@ -21,7 +21,7 @@ class AlienInvasion:
         self.bullets = pygame.sprite.Group()
         self.aliens = pygame.sprite.Group()
         self._create_fleet()
-        self.play_button = Button(self, "Gra")
+        self.play_button = Button(self, "New game")
 
     def run_game(self):
         while True:
@@ -47,7 +47,8 @@ class AlienInvasion:
                     self._check_play_button(mouse_pos)
 
     def _check_play_button(self, mouse_pos):
-        if self.play_button.rect.collidepoint(mouse_pos):
+        button_clicked = self.play_button.rect.collidepoint(mouse_pos)
+        if button_clicked and not self.stats.game_active:
             #resetting stats, deleting bullets and aliens then creating new
             self.stats.reset_stats()
             self.stats.game_active = True
