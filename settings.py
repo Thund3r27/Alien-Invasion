@@ -24,6 +24,8 @@ class Settings:
         self.alien_speed = 1.0
         #self.fleet_direction value means right when 1 and left when -1
         self.fleet_direction = 1
+        #scores
+        self.alien_points = 50
 
     def increase_speed(self):
         """Speeding up the game"""
