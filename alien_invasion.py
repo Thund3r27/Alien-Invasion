@@ -58,6 +58,7 @@ class AlienInvasion:
         #resetting stats, deleting bullets and aliens then creating new
         self.stats.reset_stats()
         self.stats.game_active = True
+        self.sb.prep_score()
         self.aliens.empty()
         self.bullets.empty()
         self._create_fleet()
